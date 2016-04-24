@@ -42,3 +42,6 @@ angular.module('starter', ['ionic'])
     })
     $urlRouterProvider.otherwise('/');
 })
+.controller('AllController', function($scope){
+  
+})
