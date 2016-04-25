@@ -24,4 +24,30 @@ $balanced: #008635 !default;
 .item-complex .item-content{
     // Remove right padding of items normally used for icons
     padding: 16px;
+    background-color: transparent;
+}
+
+.armadale{
+    background: #f2a900;
+    color: #ffffff;
+}
+
+.joondalup{
+    background: #949300;
+    color: #ffffff;
+}
+
+.mandurah{
+    background: #cb6015;
+    color: #ffffff;
+}
+
+.fremantle{
+    background: #002f6c; 
+    color: #ffffff;
+}
+
+.midland{
+    background: #910048;
+    color: #ffffff;
 }

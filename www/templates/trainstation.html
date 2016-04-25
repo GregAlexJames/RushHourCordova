@@ -1,7 +1,7 @@
 <ion-view title="{{trainStation.name}}">
     <ion-content class="has-header">
         <ion-list ng-if="isLoaded">
-            <ion-item ng-repeat="train in trainList | orderBy:['minutesToTrain']" class="item row-no-padding" href="">
+            <ion-item ng-repeat="train in trainList | orderBy:['minutesToTrain']" class="item row-no-padding" href="" ng-class="{'armadale': train.line == 'Armadale' || train.line == 'Thornlie', 'joondalup': train.line == 'Butler', 'mandurah': train.line == 'Mandurah', 'midland': train.line == 'Midland', 'fremantle': train.line == 'Fremantle'}">
                 <div class="row">
                     <div class="col-80">
                         {{train.line}}
