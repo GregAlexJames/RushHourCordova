@@ -20,3 +20,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 $balanced: #008635 !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+
+.item-complex .item-content{
+    // Remove right padding of items normally used for icons
+    padding: 16px;
+}

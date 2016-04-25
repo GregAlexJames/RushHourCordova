@@ -4,9 +4,14 @@
             on-refresh="doRefresh()" spinner="spiral">
         </ion-refresher>
         <ion-list ng-if="isLoaded">
-            <ion-item ng-repeat="station in trainStations | orderBy:['distance']" class="item" href="#/trainstation/{{station.identifier}}">
-                <div>
-                    {{station.name}}
+            <ion-item ng-repeat="station in trainStations | orderBy:['distance']" class="item row-no-padding" href="#/trainstation/{{station.identifier}}">
+                <div class="row">
+                    <div class="col-80">
+                        {{station.name}}
+                    </div>
+                    <div class="col-20" style="text-align: right;">
+                        {{station.distance | number:1}}km
+                    </div>
                 </div>
             </ion-item>
         </ion-list>        
