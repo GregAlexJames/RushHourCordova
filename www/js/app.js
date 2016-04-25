@@ -43,7 +43,7 @@ angular.module('starter', ['ionic'])
     $urlRouterProvider.otherwise('/');
 })
 
-.factory('TrainStations', function(){
+.factory('TrainStations', function($http){
   // data taken from http://api.perthtransit.com/1/train_stations
   var trainStationList = 
   [
@@ -149,10 +149,33 @@ angular.module('starter', ['ionic'])
     });
   }
   
+  var getTrainsForStation = function (station, callback){
+    $http.get("http://api.perthtransit.com/1/train_stations/" + station).then(function(result){
+      
+      var currentTime = new Date();
+      var currentHour = currentTime.getHours();
+      var currentMinute = currentTime.getMinutes(); 
+      result.data.response.times.forEach(function(trainDetails){
+         var trainTimeSplit = trainDetails.time.split(":");
+         var trainHour = Number(trainTimeSplit[0]);
+         var trainMinute = Number(trainTimeSplit[1]);
+         
+         if(trainHour < currentHour){
+           trainHour = trainHour + 24;
+         }
+         
+         trainDetails.minutesToTrain = (trainHour - currentHour) * 60 + (trainMinute - currentMinute);         
+      })
+      
+      callback(result.data.response.times);  
+    })
+  }
+  
    return {
     trainStationList: trainStationList,  
     getStationById: getStationById,
     setDistance: setCrowDistance,  
+    getTrainsForStation: getTrainsForStation,
   };
 })
 .controller('AllController', function($scope,  $ionicLoading, TrainStations){
@@ -187,4 +210,12 @@ angular.module('starter', ['ionic'])
 })
 .controller('TrainStationController', function($scope, $stateParams, TrainStations){
   $scope.trainStation = TrainStations.getStationById($stateParams.id);
+  $scope.isLoaded = false;
+  
+  TrainStations.getTrainsForStation($scope.trainStation.identifier, function(foundTrains){
+    $scope.trainList = foundTrains;
+    $scope.isLoaded = true;
+  });
+  
+  
 })

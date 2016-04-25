@@ -12,3 +12,9 @@ Code Example of Cordova and Ionic Framework
 Open 2 separate terminal instances
 1. **npm run dev** (builds sass and runs ionic dev server)
 2. **npm run watch** (watches file system for scss changes)
+
+
+Note:
+
+To prevent CORS issues during development, use chrome and the following extension:
+https://chrome.google.com/webstore/detail/nlfbmbojpeacfghkpbjhddihlkkiljbi?utm_source=chrome-app-launcher-info-dialog
