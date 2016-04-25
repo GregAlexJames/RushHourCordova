@@ -1,0 +1,11 @@
+<ion-view title="RUSH HOUR CORDOVA">
+  <ion-content class="has-header">
+        <ion-list >
+            <ion-item ng-repeat="station in trainStations" class="item" href="#/trainstation/{{station.identifier}}">
+                <div>
+                    {{station.name}}
+                </div>
+            </ion-item>
+        </ion-list>
+  </ion-content>
+</ion-view>
