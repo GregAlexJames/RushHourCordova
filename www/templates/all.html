@@ -1,16 +1,14 @@
 <ion-view title="RUSH HOUR CORDOVA">
   <ion-content class="has-header">
-      <!--<ion-spinner ng-show="isLoading" >
-      </ion-spinner>-->
         <ion-refresher
             on-refresh="doRefresh()" spinner="spiral">
         </ion-refresher>
-        <ion-list ng-hide="isLoading">
+        <ion-list ng-if="isLoaded">
             <ion-item ng-repeat="station in trainStations | orderBy:['distance']" class="item" href="#/trainstation/{{station.identifier}}">
                 <div>
                     {{station.name}}
                 </div>
             </ion-item>
-        </ion-list>
+        </ion-list>        
   </ion-content>
 </ion-view>

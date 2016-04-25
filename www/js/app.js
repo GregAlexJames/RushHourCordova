@@ -155,16 +155,24 @@ angular.module('starter', ['ionic'])
     setDistance: setCrowDistance,  
   };
 })
-.controller('AllController', function($scope, TrainStations){
+.controller('AllController', function($scope,  $ionicLoading, TrainStations){
   $scope.trainStations = TrainStations.trainStationList;
-  $scope.isLoading = true;
+  $ionicLoading.show({
+    content: 'Loading',
+    animation: 'fade-in',
+    showBackdrop: true,
+    maxWidth: 200,
+    showDelay: 0  
+  });
+  $scope.isLoaded = false;
   
     var setPositionAndRefresh = function(position) {
       var lat = position.coords.latitude; 
       var long = position.coords.longitude;
 
       TrainStations.setDistance(lat, long);    
-      $scope.isLoading = false;
+      $scope.isLoaded = true;
+      $ionicLoading.hide();
       $scope.$broadcast('scroll.refreshComplete');
     }
   
